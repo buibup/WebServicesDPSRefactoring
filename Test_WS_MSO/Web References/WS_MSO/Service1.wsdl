@@ -1,0 +1,659 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="WS_GetProfile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="APP_ID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WS_GetProfileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WS_GetProfileResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WS_GetJob">
+        <s:complexType />
+      </s:element>
+      <s:element name="WS_GetJobResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WS_GetJobResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WS_GetAddress">
+        <s:complexType />
+      </s:element>
+      <s:element name="WS_GetAddressResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WS_GetAddressResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WS_GetBankInfo">
+        <s:complexType />
+      </s:element>
+      <s:element name="WS_GetBankInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WS_GetBankInfoResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WS_GetMedical_Plan">
+        <s:complexType />
+      </s:element>
+      <s:element name="WS_GetMedical_PlanResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WS_GetMedical_PlanResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WS_GetPhone">
+        <s:complexType />
+      </s:element>
+      <s:element name="WS_GetPhoneResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WS_GetPhoneResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WS_InsertCert">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="APP_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="DOCTOR_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EMP_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PROFILE_ID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CERT_TYPE_ID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CERT_COUNTRY_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="CERT_COUNTRY" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CERT_FROM" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CERT_NAME" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CERT_START_DATE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CERT_EXPIRED_DATE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CERT_END_DATE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CERT_VERIFY_STATUS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CERT_STATUS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CERT_URL" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WS_InsertCertResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="WS_InsertCertResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WS_InsertResuscitative">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="APP_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="DOCTOR_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PROFILE_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RESUSCITATIVE_SUBJECT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RESUSCITATIVE_SUBJECTNAME" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RESUSCITATIVE_END_DATE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RESUSCITATIVE_INSTITUE_NAME" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RESUSCITATIVE_EXPIRED_DATE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RESUSCITATIVE_STATUS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RESUSCITATIVE_URL" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WS_InsertResuscitativeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="WS_InsertResuscitativeResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WS_Country">
+        <s:complexType />
+      </s:element>
+      <s:element name="WS_CountryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WS_CountryResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WS_InsertOrientation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="APP_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="PROFILE_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ORIENTATION_DATE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ORIENTATION_RESULT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ORIENTATION_STATUS" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WS_InsertOrientationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="WS_InsertOrientationResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WS_InsertCME">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="APP_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="DOCTOR_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PROFILE_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CME_SUBJECT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CME_DATE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CME_TYPE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CME_INSTITUTE_NAME" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CME_SCORE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CME_EXPIRATION_DATE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CME_FILE_PATH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CME_FILE_TYPE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CME_STATUS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CME_URL" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WS_InsertCMEResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="WS_InsertCMEResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WS_InsertMOC">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="APP_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="DOCTOR_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PROFILE_ID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="MOC_TYPE_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="MOC_TOPIC_NAME" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="MOC_COUNTRY_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="MOC_COUNTRY" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MOC_FROM" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MOC_START_DATE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MOC_END_DATE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MOC_VERIFY_STATUS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MOC_STATUS" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="MOC_SCORE" type="s:float" />
+            <s:element minOccurs="0" maxOccurs="1" name="MOC_URL" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WS_InsertMOCResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="WS_InsertMOCResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WS_InsertMOC2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="APP_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="DOCTOR_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PROFILE_ID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="MOC_TYPE_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="MOC_TOPIC_NAME" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="MOC_COUNTRY_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="MOC_COUNTRY" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MOC_FROM" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MOC_START_DATE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MOC_END_DATE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MOC_VERIFY_STATUS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MOC_STATUS" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="MOC_SCORE" type="s:float" />
+            <s:element minOccurs="0" maxOccurs="1" name="MOC_URL" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WS_InsertMOC2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="WS_InsertMOC2Result" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="WS_GetProfileSoapIn">
+    <wsdl:part name="parameters" element="tns:WS_GetProfile" />
+  </wsdl:message>
+  <wsdl:message name="WS_GetProfileSoapOut">
+    <wsdl:part name="parameters" element="tns:WS_GetProfileResponse" />
+  </wsdl:message>
+  <wsdl:message name="WS_GetJobSoapIn">
+    <wsdl:part name="parameters" element="tns:WS_GetJob" />
+  </wsdl:message>
+  <wsdl:message name="WS_GetJobSoapOut">
+    <wsdl:part name="parameters" element="tns:WS_GetJobResponse" />
+  </wsdl:message>
+  <wsdl:message name="WS_GetAddressSoapIn">
+    <wsdl:part name="parameters" element="tns:WS_GetAddress" />
+  </wsdl:message>
+  <wsdl:message name="WS_GetAddressSoapOut">
+    <wsdl:part name="parameters" element="tns:WS_GetAddressResponse" />
+  </wsdl:message>
+  <wsdl:message name="WS_GetBankInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:WS_GetBankInfo" />
+  </wsdl:message>
+  <wsdl:message name="WS_GetBankInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:WS_GetBankInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="WS_GetMedical_PlanSoapIn">
+    <wsdl:part name="parameters" element="tns:WS_GetMedical_Plan" />
+  </wsdl:message>
+  <wsdl:message name="WS_GetMedical_PlanSoapOut">
+    <wsdl:part name="parameters" element="tns:WS_GetMedical_PlanResponse" />
+  </wsdl:message>
+  <wsdl:message name="WS_GetPhoneSoapIn">
+    <wsdl:part name="parameters" element="tns:WS_GetPhone" />
+  </wsdl:message>
+  <wsdl:message name="WS_GetPhoneSoapOut">
+    <wsdl:part name="parameters" element="tns:WS_GetPhoneResponse" />
+  </wsdl:message>
+  <wsdl:message name="WS_InsertCertSoapIn">
+    <wsdl:part name="parameters" element="tns:WS_InsertCert" />
+  </wsdl:message>
+  <wsdl:message name="WS_InsertCertSoapOut">
+    <wsdl:part name="parameters" element="tns:WS_InsertCertResponse" />
+  </wsdl:message>
+  <wsdl:message name="WS_InsertResuscitativeSoapIn">
+    <wsdl:part name="parameters" element="tns:WS_InsertResuscitative" />
+  </wsdl:message>
+  <wsdl:message name="WS_InsertResuscitativeSoapOut">
+    <wsdl:part name="parameters" element="tns:WS_InsertResuscitativeResponse" />
+  </wsdl:message>
+  <wsdl:message name="WS_CountrySoapIn">
+    <wsdl:part name="parameters" element="tns:WS_Country" />
+  </wsdl:message>
+  <wsdl:message name="WS_CountrySoapOut">
+    <wsdl:part name="parameters" element="tns:WS_CountryResponse" />
+  </wsdl:message>
+  <wsdl:message name="WS_InsertOrientationSoapIn">
+    <wsdl:part name="parameters" element="tns:WS_InsertOrientation" />
+  </wsdl:message>
+  <wsdl:message name="WS_InsertOrientationSoapOut">
+    <wsdl:part name="parameters" element="tns:WS_InsertOrientationResponse" />
+  </wsdl:message>
+  <wsdl:message name="WS_InsertCMESoapIn">
+    <wsdl:part name="parameters" element="tns:WS_InsertCME" />
+  </wsdl:message>
+  <wsdl:message name="WS_InsertCMESoapOut">
+    <wsdl:part name="parameters" element="tns:WS_InsertCMEResponse" />
+  </wsdl:message>
+  <wsdl:message name="WS_InsertMOCSoapIn">
+    <wsdl:part name="parameters" element="tns:WS_InsertMOC" />
+  </wsdl:message>
+  <wsdl:message name="WS_InsertMOCSoapOut">
+    <wsdl:part name="parameters" element="tns:WS_InsertMOCResponse" />
+  </wsdl:message>
+  <wsdl:message name="WS_InsertMOC2SoapIn">
+    <wsdl:part name="parameters" element="tns:WS_InsertMOC2" />
+  </wsdl:message>
+  <wsdl:message name="WS_InsertMOC2SoapOut">
+    <wsdl:part name="parameters" element="tns:WS_InsertMOC2Response" />
+  </wsdl:message>
+  <wsdl:portType name="Service1Soap">
+    <wsdl:operation name="WS_GetProfile">
+      <wsdl:input message="tns:WS_GetProfileSoapIn" />
+      <wsdl:output message="tns:WS_GetProfileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WS_GetJob">
+      <wsdl:input message="tns:WS_GetJobSoapIn" />
+      <wsdl:output message="tns:WS_GetJobSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WS_GetAddress">
+      <wsdl:input message="tns:WS_GetAddressSoapIn" />
+      <wsdl:output message="tns:WS_GetAddressSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WS_GetBankInfo">
+      <wsdl:input message="tns:WS_GetBankInfoSoapIn" />
+      <wsdl:output message="tns:WS_GetBankInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WS_GetMedical_Plan">
+      <wsdl:input message="tns:WS_GetMedical_PlanSoapIn" />
+      <wsdl:output message="tns:WS_GetMedical_PlanSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WS_GetPhone">
+      <wsdl:input message="tns:WS_GetPhoneSoapIn" />
+      <wsdl:output message="tns:WS_GetPhoneSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WS_InsertCert">
+      <wsdl:input message="tns:WS_InsertCertSoapIn" />
+      <wsdl:output message="tns:WS_InsertCertSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WS_InsertResuscitative">
+      <wsdl:input message="tns:WS_InsertResuscitativeSoapIn" />
+      <wsdl:output message="tns:WS_InsertResuscitativeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WS_Country">
+      <wsdl:input message="tns:WS_CountrySoapIn" />
+      <wsdl:output message="tns:WS_CountrySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WS_InsertOrientation">
+      <wsdl:input message="tns:WS_InsertOrientationSoapIn" />
+      <wsdl:output message="tns:WS_InsertOrientationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WS_InsertCME">
+      <wsdl:input message="tns:WS_InsertCMESoapIn" />
+      <wsdl:output message="tns:WS_InsertCMESoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WS_InsertMOC">
+      <wsdl:input message="tns:WS_InsertMOCSoapIn" />
+      <wsdl:output message="tns:WS_InsertMOCSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WS_InsertMOC2">
+      <wsdl:input message="tns:WS_InsertMOC2SoapIn" />
+      <wsdl:output message="tns:WS_InsertMOC2SoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Service1Soap" type="tns:Service1Soap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="WS_GetProfile">
+      <soap:operation soapAction="http://tempuri.org/WS_GetProfile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WS_GetJob">
+      <soap:operation soapAction="http://tempuri.org/WS_GetJob" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WS_GetAddress">
+      <soap:operation soapAction="http://tempuri.org/WS_GetAddress" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WS_GetBankInfo">
+      <soap:operation soapAction="http://tempuri.org/WS_GetBankInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WS_GetMedical_Plan">
+      <soap:operation soapAction="http://tempuri.org/WS_GetMedical_Plan" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WS_GetPhone">
+      <soap:operation soapAction="http://tempuri.org/WS_GetPhone" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WS_InsertCert">
+      <soap:operation soapAction="http://tempuri.org/WS_InsertCert" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WS_InsertResuscitative">
+      <soap:operation soapAction="http://tempuri.org/WS_InsertResuscitative" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WS_Country">
+      <soap:operation soapAction="http://tempuri.org/WS_Country" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WS_InsertOrientation">
+      <soap:operation soapAction="http://tempuri.org/WS_InsertOrientation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WS_InsertCME">
+      <soap:operation soapAction="http://tempuri.org/WS_InsertCME" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WS_InsertMOC">
+      <soap:operation soapAction="http://tempuri.org/WS_InsertMOC" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WS_InsertMOC2">
+      <soap:operation soapAction="http://tempuri.org/WS_InsertMOC2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="Service1Soap12" type="tns:Service1Soap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="WS_GetProfile">
+      <soap12:operation soapAction="http://tempuri.org/WS_GetProfile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WS_GetJob">
+      <soap12:operation soapAction="http://tempuri.org/WS_GetJob" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WS_GetAddress">
+      <soap12:operation soapAction="http://tempuri.org/WS_GetAddress" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WS_GetBankInfo">
+      <soap12:operation soapAction="http://tempuri.org/WS_GetBankInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WS_GetMedical_Plan">
+      <soap12:operation soapAction="http://tempuri.org/WS_GetMedical_Plan" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WS_GetPhone">
+      <soap12:operation soapAction="http://tempuri.org/WS_GetPhone" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WS_InsertCert">
+      <soap12:operation soapAction="http://tempuri.org/WS_InsertCert" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WS_InsertResuscitative">
+      <soap12:operation soapAction="http://tempuri.org/WS_InsertResuscitative" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WS_Country">
+      <soap12:operation soapAction="http://tempuri.org/WS_Country" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WS_InsertOrientation">
+      <soap12:operation soapAction="http://tempuri.org/WS_InsertOrientation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WS_InsertCME">
+      <soap12:operation soapAction="http://tempuri.org/WS_InsertCME" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WS_InsertMOC">
+      <soap12:operation soapAction="http://tempuri.org/WS_InsertMOC" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WS_InsertMOC2">
+      <soap12:operation soapAction="http://tempuri.org/WS_InsertMOC2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service1">
+    <wsdl:port name="Service1Soap" binding="tns:Service1Soap">
+      <soap:address location="http://localhost:55535/Service1.asmx" />
+    </wsdl:port>
+    <wsdl:port name="Service1Soap12" binding="tns:Service1Soap12">
+      <soap12:address location="http://localhost:55535/Service1.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
