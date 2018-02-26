@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -24,8 +24,8 @@ namespace WS_MSO
             int? _appId = appId;
             int? _compareAppId = compareAppId;
 
-            var isAppIdNull = _appId == null ? false : true;
-            var isCompareAppIdNull = _compareAppId == null ? false : true;
+            var isAppIdNull = _appId == null ? true : false;
+            var isCompareAppIdNull = _compareAppId == null ? true : false;
 
             if (isAppIdNull || isCompareAppIdNull) return false;
             if (!(_appId == compareAppId)) return false;

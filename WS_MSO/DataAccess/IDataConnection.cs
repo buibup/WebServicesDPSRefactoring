@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -10,7 +10,7 @@ namespace WS_MSO.DataAccess
     public interface IDataConnection
     {
         DataTable GetData(string queryString, string tableName);
-        DataTable GetData(string queryString, string tableName, Dictionary<string, string> paramDic);
+        DataTable GetData(string queryString, string tableName, Dictionary<string, dynamic> paramDic);
         Tuple<int, string> InsertOrUpdateData(string queryString, Dictionary<string, dynamic> paramDic);
     }
 }

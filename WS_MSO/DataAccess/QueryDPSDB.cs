@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -100,7 +100,7 @@ namespace WS_MSO.DataAccess
         public static string InsertTransactionLog()
         {
             const string query = @"insert into WS_TRANSACTION_LOG(WS_APP_ID,WS_CREATE_DATE,WS_USER_NAME,WS_SERVICES_ID,WS_SQL) 
-                                VALUES(@WS_APP_ID, GETDATE(), @WS_USER_NAME, @WS_SERVICES_ID, @WS_SQL)";
+                                VALUES(?, GETDATE(), ?, ?, ?)";
 
             return query;
         }
@@ -110,9 +110,7 @@ namespace WS_MSO.DataAccess
                                 (DOCTOR_ID,EMP_ID,PROFILE_ID,CERT_TYPE_ID,CERT_TYPE,CERT_COUNTRY_ID,
                                 CERT_COUNTRY,CERT_FROM,CERT_NAME,CERT_START_DATE,CERT_EXPIRED_DATE,
                                 CERT_END_DATE,CERT_VERIFY_STATUS,CERT_STATUS,CERT_URL) 
-                                VALUES(@DOCTOR_ID, @PROFILE_ID, @CERT_TYPE_ID, @CERT_TYPE, @CERT_COUNTRY_ID,
-                                @CERT_COUNTRY, @CERT_FROM, @CERT_NAME, @CERT_START_DATE, @CERT_EXPIRED_DATE,
-                                @CERT_END_DATE, @CERT_VERIFY_STATUS, @CERT_STATUS, @CERT_URL)";
+                                VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
             return query;
         }
@@ -122,7 +120,7 @@ namespace WS_MSO.DataAccess
                                 RESUSCITATIVE_SUBJECTNAME,RESUSCITATIVE_END_DATE,RESUSCITATIVE_INSTITUE_NAME,
                                 RESUSCITATIVE_EXPIRED_DATE,RESUSCITATIVE_STATUS,CREATE_USER_ID,CREATE_DATE,
                                 UPD_USER_ID,UPD_DATE,RESUSCITATIVE_URL)
-                                    VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                                    VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, GETDATE(), ?, GETDATE(), ?)";
 
             return query;
         }
@@ -142,9 +140,7 @@ namespace WS_MSO.DataAccess
         {
             const string query = @"Insert Into DPS_TRAINING_ORIENTATION(PROFILE_ID,ORIENTATION_DATE,ORIENTATION_RESULT,
                                 ORIENTATION_STATUS,CREATE_USER_ID,CREATE_DATE,UPD_USER_ID,UPD_DATE,ORIENTATION_URL) 
-                                VALUES(@PROFILE_ID, @ORIENTATION_DATE, @ORIENTATION_RESULT,
-                                @ORIENTATION_STATUS, @CREATE_USER_ID, @CREATE_DATE, @UPD_USER_ID,
-                                @UPD_DATE, @ORIENTATION_URL)";
+                                VALUES(?, ?, ?,?, ?, GETDATE(), ?, GETDATE(), ?)";
 
             return query;
         }
@@ -156,12 +152,12 @@ namespace WS_MSO.DataAccess
         }
         public static string InsertCME()
         {
-            const string query = @"INSERT INTO [dbo].[DPS_TRAINING_CME]([PROFILE_ID],[CME_SUBJECT],[CME_DATE],
-                                [CME_TYPE],[CME_INSTITUTE_NAME],[CME_SCORE],[CME_EXPIRATION_DATE],[CME_FILE_PATH],
-                                [CME_FILE_TYPE],[CME_STATUS],[CREATE_USER_ID],[CREATE_DATE],[UPD_USER_ID],[UPD_DATE],[CME_URL])
-                                VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			const string query = @"INSERT INTO [dbo].[DPS_TRAINING_CME]([PROFILE_ID],[CME_SUBJECT],[CME_DATE],
+			                    [CME_TYPE],[CME_INSTITUTE_NAME],[CME_SCORE],[CME_EXPIRATION_DATE],[CME_FILE_PATH],
+			                    [CME_FILE_TYPE],[CME_STATUS],[CREATE_USER_ID],[CREATE_DATE],[UPD_USER_ID],[UPD_DATE],[CME_URL])
+			                     VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, GETDATE(), ?, GETDATE(), ?)";
 
-            return query;
+			return query;
         }
         public static string InsertMOC()
         {
@@ -169,7 +165,7 @@ namespace WS_MSO.DataAccess
                                 MOC_TOPIC_NAME,MOC_COUNTRY_ID,MOC_COUNTRY,MOC_FROM,MOC_START_DATE,
                                 MOC_END_DATE,MOC_VERIFY_STATUS,MOC_STATUS,MOC_SCORE,MOC_CREATE_USER_ID,
                                 MOC_CREATE_DATE,MOC_UPDATE_USER_ID,MOC_UPDATE_DATE,MOC_URL)
-                                VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                                VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, GETDATE(), ?, GETDATE(), ?)";
 
             return query;
         }

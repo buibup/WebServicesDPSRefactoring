@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -10,10 +10,13 @@ namespace WS_MSO.Services
     public class DPSService : IDPSService
     {
         private IDataConnection dataConnection;
-        public DPSService(SqlConnector sqlConnector)
+		private IDataConnection dataLogConnection;
+        public DPSService()
         {
-            dataConnection = sqlConnector;
-        }
+            dataConnection = new SqlConnector();
+			dataLogConnection = new SqlConnector(GlobalConfig.DPSLogConnection);
+
+		}
 
         public DataTable GetAddress()
         {
@@ -32,9 +35,11 @@ namespace WS_MSO.Services
 
         public DataTable GetAppInformation(int appId)
         {
-            Dictionary<string, string> dic = new Dictionary<string, string>();
-            dic.Add("WS_APP_ID", appId.ToString());
-            return dataConnection.GetData(QueryDPSDB.GetAppInformation(), "DPSAppInformation", dic);
+			var dic = new Dictionary<string, dynamic>
+			{
+				{ "WS_APP_ID", appId }
+			};
+			return dataLogConnection.GetData(QueryDPSDB.GetAppInformation(), "DPSAppInformation", dic);
         }
 
         public DataTable GetBankInfo()
@@ -148,7 +153,7 @@ namespace WS_MSO.Services
         }
 
         public int InsertCert(int appId, string doctorId, string empId,
-            string profileId, int certTypeId, int certCountryId,
+            int profileId, int certTypeId, int certCountryId,
             string certCountry, string certfrom, string certName,
             string certStartDate, string certExpireDate, string certEndDate,
             string certVerifyStatus, string certStatus, string certURL)
@@ -168,21 +173,21 @@ namespace WS_MSO.Services
 
             var dic = new Dictionary<string, dynamic>
             {
-                { "@DOCTOR_ID", doctorId },
-                { "@EMP_ID", empId },
-                { "@PROFILE_ID", profileId },
-                { "@CERT_TYPE_ID", certTypeId },
-                { "@CERT_TYPE", certType },
-                { "@CERT_COUNTRY_ID", certCountryId },
-                { "@CERT_COUNTRY", certCountry },
-                { "@CERT_FROM", certfrom },
-                { "@CERT_NAME", certName },
-                { "@CERT_START_DATE", certStartDate },
-                { "@CERT_EXPIRED_DATE", certExpireDate },
-                { "@CERT_END_DATE", certExpireDate },
-                { "@CERT_VERIFY_STATUS", certVerifyStatus },
-                { "@CERT_STATUS", certStatus },
-                { "@CERT_URL", certURL }
+                { "DOCTOR_ID", doctorId },
+                { "EMP_ID", empId },
+                { "PROFILE_ID", profileId },
+                { "CERT_TYPE_ID", certTypeId },
+                { "CERT_TYPE", certType },
+                { "CERT_COUNTRY_ID", certCountryId },
+                { "CERT_COUNTRY", certCountry },
+                { "CERT_FROM", certfrom },
+                { "CERT_NAME", certName },
+                { "CERT_START_DATE", certStartDate },
+                { "CERT_EXPIRED_DATE", certExpireDate },
+                { "CERT_END_DATE", certExpireDate },
+                { "CERT_VERIFY_STATUS", certVerifyStatus },
+                { "CERT_STATUS", certStatus },
+                { "CERT_URL", certURL }
             };
 
             var sqlCmd = QueryDPSDB.InsertCert();
@@ -196,7 +201,7 @@ namespace WS_MSO.Services
 
         public int InsertCME(int appId, string doctorId, string profileId, string cmeSubject, string cmeDate, string cmeType, string cmeInstituteName, string cmeScore, string cmeExpirationDate, string cmeFilePath, string cmeFileType, string cmeStatus, string cmeURL)
         {
-            int result = 0;
+            int result = -1;
 
             if (appId.IsCheckedAppId(5))
             {
@@ -213,11 +218,10 @@ namespace WS_MSO.Services
                     { "CME_FILE_TYPE", cmeFileType },
                     { "CME_STATUS", cmeStatus },
                     { "CREATE_USER_ID", "MSO_USER" },
-                    { "CREATE_DATE", "GETDATE()" },
                     { "UPD_USER_ID", "MSO_USER" },
-                    { "UPD_DATE", "GETDATE()" },
                     { "CME_URL", cmeURL }
                 };
+
                 var data = dataConnection.InsertOrUpdateData(QueryDPSDB.InsertCME(), dic);
                 InsertLog(5, data.Item2, 11);
                 result = data.Item1;
@@ -228,24 +232,24 @@ namespace WS_MSO.Services
 
         public void InsertLog(int appId, string sqlCmd, int serviceId)
         {
-            var appInfo = GetAppInformation(appId);
-            if (appInfo.Rows.Count > 0)
-            {
+			var appInfo = GetAppInformation(appId);
+			if (appInfo.Rows.Count > 0)
+			{
+				var dic = new Dictionary<string, dynamic>
+				{
+					{ "WS_APP_ID", appInfo.Rows[0]["WS_APP_ID"] },
+					{ "WS_USER_NAME", appInfo.Rows[0]["WS_APP_NAME"].ToString() },
+					{ "WS_SERVICES_ID", serviceId },
+					{ "WS_SQL", sqlCmd }
+				};
+
+				dataLogConnection.InsertOrUpdateData(QueryDPSDB.InsertTransactionLog(), dic);
+			};
 
 
-                var dic = new Dictionary<string, dynamic>
-                {
-                    { "@WS_APP_ID", appInfo.Rows[0]["WS_APP_ID"].ToString() },
-                    { "@WS_USER_NAME", appInfo.Rows[0]["WS_USER_NAME"].ToString() },
-                    { "@WS_SERVICES_ID", serviceId.ToString() },
-                    { "@WS_SQL", sqlCmd }
-                };
-
-                dataConnection.InsertOrUpdateData(QueryDPSDB.InsertTransactionLog(), dic);
-            }
         }
 
-        public int InsertMOC(int appId, string doctorId, string profileId, int mocTypeId, string mocTopicName, int mocCountryId, string mocCountry, string mocFrom, string mocStartDate, string mocEndDate, string mocVerifyStatus, string mocStatus, float mocScore, string mocURL)
+        public int InsertMOC(int appId, string doctorId, int profileId, int mocTypeId, string mocTopicName, int mocCountryId, string mocCountry, string mocFrom, string mocStartDate, string mocEndDate, string mocVerifyStatus, string mocStatus, float mocScore, string mocURL)
         {
             int result = -1;
             if (appId.IsCheckedAppId(5))
@@ -265,9 +269,7 @@ namespace WS_MSO.Services
                     { "MOC_STATUS", mocStatus  },
                     { "MOC_SCORE", mocScore  },
                     { "MOC_CREATE_USER_ID", "MSO_USER"  },
-                    { "MOC_CREATE_DATE", "GETDATE()"  },
                     { "MOC_UPDATE_USER_ID", "MSO_USER"  },
-                    { "MOC_UPDATE_DATE", "GETDATE()"  },
                     { "MOC_URL", mocURL  }
                 };
                 var data = dataConnection.InsertOrUpdateData(QueryDPSDB.InsertMOC(), dic);
@@ -278,9 +280,9 @@ namespace WS_MSO.Services
             return result;
         }
 
-        public int InsertOrientation(int appId, string profileId, string orientationDate, string orientationResult, string orientationStatus)
+        public int InsertOrientation(int appId, int profileId, string orientationDate, string orientationResult, string orientationStatus)
         {
-            int result = 0;
+            int result = -1;
             if (appId.IsCheckedAppId(5))
             {
                 // Insert
@@ -289,15 +291,15 @@ namespace WS_MSO.Services
                 {
                     var dic = new Dictionary<string, dynamic>()
                     {
-                        { "@PROFILE_ID", profileId },
-                        { "@ORIENTATION_DATE", orientationDate },
-                        { "@ORIENTATION_RESULT", orientationResult },
-                        { "@ORIENTATION_STATUS", orientationStatus },
-                        { "@CREATE_USER_ID", "MSO_USER" },
-                        { "@CREATE_DATE", "GETDATE()" },
-                        { "@UPD_USER_ID", "MSO_USER" },
-                        { "@UPD_DATE", "GETDATE()" },
-                        { "@ORIENTATION_URL", "" }
+                        { "PROFILE_ID", profileId },
+                        { "ORIENTATION_DATE", orientationDate },
+                        { "ORIENTATION_RESULT", orientationResult },
+                        { "ORIENTATION_STATUS", orientationStatus },
+                        { "CREATE_USER_ID", "MSO_USER" },
+                        { "CREATE_DATE", "GETDATE()" },
+                        { "UPD_USER_ID", "MSO_USER" },
+                        { "UPD_DATE", "GETDATE()" },
+                        { "ORIENTATION_URL", "" }
 
                     };
                     var data = dataConnection.InsertOrUpdateData(QueryDPSDB.InsertTraininOrientation(), dic);
@@ -320,7 +322,7 @@ namespace WS_MSO.Services
             return result;
         }
 
-        public int InsertResuscitative(int appId, string doctorId, string profileId, string resuscitativeSubject, string resuscitativeSubjectName, string resuscitativeEndDate, string resuscitativeInstitueName, string resuscitativeExpiredDate, string resuscitativeStatus, string resuscitativeURL)
+        public int InsertResuscitative(int appId, string doctorId, int profileId, string resuscitativeSubject, string resuscitativeSubjectName, string resuscitativeEndDate, string resuscitativeInstitueName, string resuscitativeExpiredDate, string resuscitativeStatus, string resuscitativeURL)
         {
             int result = -1;
 
